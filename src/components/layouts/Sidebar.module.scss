@@ -1,0 +1,11 @@
+.sidebar-menu-container{
+  box-shadow: rgba(50, 71, 92, 0.1) 0px 2px 10px 0px;
+  .sidebar-item{
+    &.active{
+      @apply bg-active-menu-sidebar text-primary-sidebar;
+      svg, path{
+        fill: rgb(105, 108, 255);
+      }
+    }
+  }
+}
