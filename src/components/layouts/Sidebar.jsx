@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import ChevronIcon from "../icons/Chevron";
@@ -92,8 +92,24 @@ const listMenu = [
   },
 ];
 export default function Sidebar(props) {
-  const [open, setOpen] = useState(true);
-  const scrollbarRef = useRef();
+  const [open, setOpen] = useState(true); 
+  useEffect(() => {
+    adjustContent(open);
+  },[open]);
+
+  const adjustContent = (status) => {
+    const contentPageEl = document.getElementById("content-page");
+    if (status) {
+      contentPageEl?.classList?.add("ml-[260px]")
+      contentPageEl?.classList?.remove("ml-[84px]")
+      return;
+    }
+    contentPageEl?.classList?.remove("ml-[260px]")
+    contentPageEl?.classList?.add("ml-[84px]")
+    return;
+
+  };
+
   return (
     <nav className={cn("fixed min-h-screen bg-white transition-all ease-out", style["sidebar-menu-container"], {
       "w-[260px]": open,
@@ -106,7 +122,9 @@ export default function Sidebar(props) {
         </div>
         <ToggleChevron
           open={open}
-          onClick={() => setOpen(!open)}
+          onClick={() => {
+            setOpen(!open);
+          }}
         />
       </Head>
       <div className="absolute scrollbar-sidebar left-0 right-0 bottom-0 top-[100px] flex flex-col">
@@ -147,7 +165,7 @@ function ToggleChevron({ onClick, open }) {
           "bg-placeholder rounded-full": open,
         })}
       onClick={onClick}>
-      <div className="w-[22px] h-[22px] rounded-full bg-primary-sidebar">
+      <div className="w-[22px] h-[22px] rounded-full bg-primary">
         <ChevronIcon rotate={open ? "left" : "right"} />
       </div>
     </div>
@@ -165,7 +183,7 @@ function SidebarMenu({ data, open }) {
           }
         )} key={key}>
           <div className="w-[22px] h-[22px]">{item.icon}</div>
-          {open ? item.menu : <></>}
+          {open ? <>{item.menu}</> : <></>}
         </div>
       )}
     </div>
