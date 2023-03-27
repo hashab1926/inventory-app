@@ -4,9 +4,9 @@
 @tailwind utilities;
 
 *{
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 300;
-  color:rgba(50, 71, 92, 0.6);
+  @apply text-gray-700;
 }
 
 body,html{

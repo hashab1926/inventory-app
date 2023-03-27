@@ -1,5 +1,5 @@
 import cn from "classnames";
-export default function Button({ variant, className, children, disabled, size }) {
+export default function Button({ onClick, variant, className, children, disabled, size }) {
   const listVariant = {
     "primary": "bg-primary text-white min-w-[64px] hover:bg-primary-shade",
     "outline-primary": "border border-primary text-primary hover:bg-primary hover:text-white transition-all",
@@ -14,6 +14,7 @@ export default function Button({ variant, className, children, disabled, size })
 
   return (
     <button
+      onClick={onClick}
       disabled={disabled}
       className={cn(
         listVariant[variant || "primary"],

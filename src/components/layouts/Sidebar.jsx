@@ -2,7 +2,7 @@ import cn from "classnames";
 import { useEffect, useState } from "react";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import ChevronIcon from "../icons/Chevron";
+import ChevronIcon from "../Icons/Chevron";
 import style from "./Sidebar.module.scss";
 
 const listMenu = [
